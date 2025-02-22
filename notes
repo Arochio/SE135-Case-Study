@@ -1,3 +1,19 @@
+#STEPS
+#--------
+#open csv
+
+#parse data from csv
+	#removing ,'s %'s 
+	
+#generate a figure using data
+	#pie chart
+	#make it pretty (LAAAAAAME)
+
+#generating supporting figures
+	#housing tenure and poverty status
+	#in presentation, use to talk about outside factors
+
+
 #histograms
 plt.hist(list, bins)
 plt.clf() #cleans up so you can make a 2nd plot
