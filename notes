@@ -6,6 +6,12 @@ plt.ylabel(str)
 plt.title(str)
 plt.xticks(tickValue[],tickLabel[])
 plt.yticks(seeabove)
+plt.grid(bool)
+
+#idk if this part would work, it may only apply to scatters
+c = color
+    {'Thing':'color',etc}
+a = alpha
 
 # DataFrames
 # ----------

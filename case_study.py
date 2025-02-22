@@ -31,6 +31,10 @@ test = pd.DataFrame(data=percToFloat(table[sCounty]))
 
 print(test)
 
+# Note in case I forgor bc adhd: reviewing the certifications idk if we even want bar charts. 
+# A scatter could also work 
+# or we could find a way to get everything onto one histogram with $ brackets color coded
+
 test.plot(kind="bar")
 plt.ylabel("Percent of people (%)")
 plt.xlabel("Wealth Brackets")
