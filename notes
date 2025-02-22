@@ -1,3 +1,12 @@
+#histograms
+plt.hist(list, bins)
+plt.clf() #cleans up so you can make a 2nd plot
+plt.xlabel(str)
+plt.ylabel(str)
+plt.title(str)
+plt.xticks(tickValue[],tickLabel[])
+plt.yticks(seeabove)
+
 # DataFrames
 # ----------
 .sort_values("column name")
@@ -30,3 +39,4 @@ table["col"].min()
 table["col"].max()
 table["col"].agg(function)
 table["col"].agg([fun1, fun2])
+
