@@ -1,0 +1,32 @@
+# DataFrames
+# ----------
+.sort_values("column name")
+.sort_values(["col1", "col2"])
+	ascending = bool
+
+# to select multiple needed cols use:
+# -----------------------------------
+newTab = table[["col1", "col2"]]
+
+# filtering
+# ----------
+newTab = table[comparison[] ==/</>/<= ####]
+	to include 2+ comparisons () needed around each condition
+
+list = ["one", "two",..."n"]
+newTab = table[table["num"].isin(list)]
+
+
+# new columns
+# -----------
+table["newCol" = table["colOne"] + table["colTwo"]
+table["newCol"] = table["col"].cumsum()
+
+# misc
+# ----
+table["col"].mean()
+table["col"].median()
+table["col"].min()
+table["col"].max()
+table["col"].agg(function)
+table["col"].agg([fun1, fun2])

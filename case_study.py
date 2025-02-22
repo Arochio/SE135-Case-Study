@@ -16,6 +16,7 @@ group = "Label (Grouping)"
 
 barX = [0, 1, 2, 3, 4, 5, 6, 7]
 
+print(table)
 print(table[sCounty])
 
 def percToFloat(perc):
