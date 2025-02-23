@@ -99,7 +99,7 @@ for value in categories:
     # print("Charting" + charting)
 
 temp = percToPop(table[categories[0]['name']], table[total])
-pieChart(table[categories[0]['name']], categories[0]['title'], categories[0]['legend'])
+pieChart(temp, categories[0]['title'], categories[0]['legend'])
 
 
 
