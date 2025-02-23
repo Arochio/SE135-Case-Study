@@ -15,6 +15,13 @@ dCounty ="United States!!Moved; from different county, same state!!Estimate"
 dState = "United States!!Moved; from different  state!!Estimate"
 abroad = "United States!!Moved; from abroad!!Estimate"
 
+
+categories = ["United States!!Total!!Estimate",
+            "United States!!Moved; within same county!!Estimate",
+            "United States!!Moved; from different county, same state!!Estimate",
+            "United States!!Moved; from different  state!!Estimate",
+            "United States!!Moved; from abroad!!Estimate"]
+
 groups = []
 for (index, value) in enumerate(table["Label (Grouping)"]):
     groups.append(value.replace('to','-')[8:])
