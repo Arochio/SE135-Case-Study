@@ -16,11 +16,26 @@ dState = "United States!!Moved; from different  state!!Estimate"
 abroad = "United States!!Moved; from abroad!!Estimate"
 
 
-categories = ["United States!!Total!!Estimate",
-            "United States!!Moved; within same county!!Estimate",
-            "United States!!Moved; from different county, same state!!Estimate",
-            "United States!!Moved; from different  state!!Estimate",
-            "United States!!Moved; from abroad!!Estimate"]
+categories = [{"name":"United States!!Total!!Estimate",
+               "title":"Moving in United States by Wealth Bracket (Total)",
+               "legend":"Yearly Income"},
+
+               {"name":"United States!!Moved; within same county!!Estimate",
+               "title":"Moving Within County in United States by Wealth Bracket",
+               "legend":"Yearly Income"},
+
+               {"name":"United States!!Moved; from different county, same state!!Estimate",
+               "title":"Moving Within State (different county) in United States by Wealth Bracket",
+               "legend":"Yearly Income"},
+
+               {"name":"United States!!Moved; from different  state!!Estimate",
+               "title":"Moving out of State in United States by Wealth Bracket",
+               "legend":"Yearly Income"},
+
+               {"name":"United States!!Moved; from abroad!!Estimate",
+               "title":"Moving from Abroad to United States by Wealth Bracket",
+               "legend":"Yearly Income"},
+            ]
 
 groups = []
 for (index, value) in enumerate(table["Label (Grouping)"]):
