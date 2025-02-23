@@ -45,18 +45,23 @@ groups = []
 for (index, value) in enumerate(table["Label (Grouping)"]):
     groups.append(value.replace('to','-')[8:])
 
-def pieChart(data, title, lTitle):
+def pieChart(data, title, lTitle, pieLabels):
     # plt.figure(figsize=[8,6], layout='constrained')
     legendLabels = []
     labelNumbers = labelNums(data)
     for index, value in enumerate(groups):
         legendLabels.append(f"{value}  |  {labelNumbers[index]}")
-    plt.pie(data)
+    if title == "Combined Moving of United States by Wealth Bracket":
+        plt.pie(data)
+    else:
+        plt.pie(data, labels=list(pieLabels), labeldistance=.7)
+        print("yes")
     plt.legend(labels=legendLabels,loc="center right", title=lTitle, framealpha=.5, bbox_to_anchor=(2,0.5))
-    plt.subplots_adjust(left=0.0, bottom=0.1, right=0.45)
     plt.title(title, loc="left")
+    fig = plt.gcf()
+    fig.set_size_inches(7,4)
     fileName = title + ".png"
-    plt.savefig(fileName, bbox_inches="tight", dpi=150)
+    plt.savefig(fileName, bbox_inches="tight", dpi=200)
     # plt.show()
     plt.clf()
     
@@ -89,12 +94,12 @@ def labelNums(numList):
 
 for value in categories:
     temp = percToPop(table[value['name']], table[total])
-    pieChart(temp, value['title'], value['legend'])
+    pieChart(temp, value['title'], value['legend'], table[value['name']])
 
 combined = []
 for i in table[total]:
     combined.append(float(i.replace(',','')))
-pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "Yearly Income")
+pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "Yearly Income", [])
 
 
 # temp = percToPop(table[categories[0]['name']], table[total])
