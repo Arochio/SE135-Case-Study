@@ -4,7 +4,7 @@
 #Total, Same County, Same Stated different County, Different State, Abroad
 import pandas as pd
 import matplotlib.pyplot as plt
-import csv
+import matplotlib.gridspec as gridspec
 
 csvFile = pd.read_csv("data.csv")
 table = csvFile[46:54]
@@ -45,22 +45,21 @@ groups = []
 for (index, value) in enumerate(table["Label (Grouping)"]):
     groups.append(value.replace('to','-')[8:])
 
-# barX = [0, 1, 2, 3, 4, 5, 6, 7]
-# print(table)
-# print(table[sCounty])
-
 def pieChart(data, title, lTitle):
-    
-    plt.pie(data, labels=labelNums(data))
-    plt.legend(labels=groups,loc="lower right", title=lTitle)
-    plt.title(title)
+    # plt.figure(figsize=[8,6], layout='constrained')
+    legendLabels = []
+    labelNumbers = labelNums(data)
+    for index, value in enumerate(groups):
+        legendLabels.append(f"{value}  |  {labelNumbers[index]}")
+    plt.pie(data)
+    plt.legend(labels=legendLabels,loc="center right", title=lTitle, framealpha=.5, bbox_to_anchor=(2,0.5))
+    plt.subplots_adjust(left=0.0, bottom=0.1, right=0.45)
+    plt.title(title, loc="left")
     fileName = title + ".png"
-    plt.savefig(fileName)
-    plt.show()
+    plt.savefig(fileName, bbox_inches="tight", dpi=150)
+    # plt.show()
     plt.clf()
     
-
-
 def percToFloat(perc):
     result = []
 
@@ -92,8 +91,6 @@ for value in categories:
     temp = percToPop(table[value['name']], table[total])
     pieChart(temp, value['title'], value['legend'])
 
-# print(table[total])
-# totalPie = table[total]
 combined = []
 for i in table[total]:
     combined.append(float(i.replace(',','')))
@@ -102,10 +99,6 @@ pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "
 
 # temp = percToPop(table[categories[0]['name']], table[total])
 # pieChart(temp, categories[0]['title'], categories[0]['legend'])
-
-
-
-
 
 # test = pd.DataFrame(data=percToFloat(table[sCounty]))
 
@@ -120,9 +113,6 @@ pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "
 # plt.savefig("figure.png")
 # plt.clf()
 
-
-
-
 # test = percToFloat(table[sCounty])
 
 # plt.pie(test, labels= test)
@@ -130,20 +120,12 @@ pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "
 # plt.show()
 # plt.savefig("figure2.png")
 
-
-
-
 # test.plot(kind="hist", color="red")
 # plt.ylabel("Percent of people (%)")
 # plt.xlabel("Wealth Brackets")
 # plt.xticks(barX,table[group])
 # plt.tick_params(axis="x", labelrotation=0)
 # plt.text()
-
-
-
-
-
 
 # table2.plot(kind="hist", alpha=0.4)
 # plt.show()
