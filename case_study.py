@@ -4,9 +4,10 @@
 #Total, Same County, Same Stated different County, Different State, Abroad
 import pandas as pd
 import matplotlib.pyplot as plt
+import csv
 
-table2 = pd.read_csv("data.csv")
-table = table2[46:54]
+csvFile = pd.read_csv("data.csv")
+table = csvFile[46:54]
 
 total = "United States!!Total!!Estimate"
 
@@ -92,13 +93,14 @@ def labelNums(numList):
     return newList
 
 for value in categories:
-    print(value)
-    print(table[value['name']])
-    charting = table[value['name']]
-    print("Charting" + charting)
-    #IDK WHY THIS DOESN"T WORKKKKKK AAA
-    # temp = percToPop(charting, table[total])
-    # pieChart(charting, value['title'], value['legend'])
+    pass
+    # print(value)
+    # print("This one! " + table[value['name']])
+    # print("Charting" + charting)
+
+temp = percToPop(table[categories[0]['name']], table[total])
+pieChart(table[categories[0]['name']], categories[0]['title'], categories[0]['legend'])
+
 
 
 
