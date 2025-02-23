@@ -18,11 +18,7 @@ abroad = "United States!!Moved; from abroad!!Estimate"
 
 
 categories = [
-    # {
-    #     "name":"United States!!Total!!Estimate",
-    #     "title":"Moving in United States by Wealth Bracket (Total)",
-    #     "legend":"Yearly Income"
-    # },
+
     {
         "name":"United States!!Moved; within same county!!Estimate",
         "title":"Moving Within County in United States by Wealth Bracket",
@@ -56,11 +52,11 @@ for (index, value) in enumerate(table["Label (Grouping)"]):
 def pieChart(data, title, lTitle):
     
     plt.pie(data, labels=labelNums(data))
-    plt.legend(labels=groups,loc="upper right", title=lTitle)
+    plt.legend(labels=groups,loc="lower right", title=lTitle)
     plt.title(title)
-    plt.show()
     fileName = title + ".png"
     plt.savefig(fileName)
+    plt.show()
     plt.clf()
     
 
@@ -93,13 +89,19 @@ def labelNums(numList):
     return newList
 
 for value in categories:
-    pass
-    # print(value)
-    # print("This one! " + table[value['name']])
-    # print("Charting" + charting)
+    temp = percToPop(table[value['name']], table[total])
+    pieChart(temp, value['title'], value['legend'])
 
-temp = percToPop(table[categories[0]['name']], table[total])
-pieChart(temp, categories[0]['title'], categories[0]['legend'])
+# print(table[total])
+# totalPie = table[total]
+combined = []
+for i in table[total]:
+    combined.append(float(i.replace(',','')))
+pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "Yearly Income")
+
+
+# temp = percToPop(table[categories[0]['name']], table[total])
+# pieChart(temp, categories[0]['title'], categories[0]['legend'])
 
 
 
@@ -107,9 +109,9 @@ pieChart(temp, categories[0]['title'], categories[0]['legend'])
 
 # test = pd.DataFrame(data=percToFloat(table[sCounty]))
 
-test = percToPop(table[sCounty], table[total])
+# test = percToPop(table[sCounty], table[total])
 
-pieChart(test, "Pie Chart", "Legend")
+# pieChart(test, "Pie Chart", "Legend")
 
 # plt.pie(test, labels=test)
 # plt.legend(labels=table[group],loc="upper right", title="test")

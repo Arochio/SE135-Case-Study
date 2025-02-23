@@ -50,7 +50,7 @@ newTab = table[table["num"].isin(list)]
 
 # new columns
 # -----------
-table["newCol" = table["colOne"] + table["colTwo"]
+table["newCol"] = table["colOne"] + table["colTwo"]
 table["newCol"] = table["col"].cumsum()
 
 # misc
