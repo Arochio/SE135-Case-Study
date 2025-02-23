@@ -16,31 +16,38 @@ dState = "United States!!Moved; from different  state!!Estimate"
 abroad = "United States!!Moved; from abroad!!Estimate"
 
 
-categories = [{"name":"United States!!Total!!Estimate",
-               "title":"Moving in United States by Wealth Bracket (Total)",
-               "legend":"Yearly Income"},
-
-               {"name":"United States!!Moved; within same county!!Estimate",
-               "title":"Moving Within County in United States by Wealth Bracket",
-               "legend":"Yearly Income"},
-
-               {"name":"United States!!Moved; from different county, same state!!Estimate",
-               "title":"Moving Within State (different county) in United States by Wealth Bracket",
-               "legend":"Yearly Income"},
-
-               {"name":"United States!!Moved; from different  state!!Estimate",
-               "title":"Moving out of State in United States by Wealth Bracket",
-               "legend":"Yearly Income"},
-
-               {"name":"United States!!Moved; from abroad!!Estimate",
-               "title":"Moving from Abroad to United States by Wealth Bracket",
-               "legend":"Yearly Income"},
-            ]
+categories = [
+    # {
+    #     "name":"United States!!Total!!Estimate",
+    #     "title":"Moving in United States by Wealth Bracket (Total)",
+    #     "legend":"Yearly Income"
+    # },
+    {
+        "name":"United States!!Moved; within same county!!Estimate",
+        "title":"Moving Within County in United States by Wealth Bracket",
+        "legend":"Yearly Income"
+    },
+    {
+        "name":"United States!!Moved; from different county, same state!!Estimate",
+        "title":"Moving Within State (different county) in United States by Wealth Bracket",
+        "legend":"Yearly Income"
+    },
+    {
+        "name":"United States!!Moved; from different  state!!Estimate",
+        "title":"Moving out of State in United States by Wealth Bracket",
+        "legend":"Yearly Income"
+    },
+    {
+        "name":"United States!!Moved; from abroad!!Estimate",
+        "title":"Moving from Abroad to United States by Wealth Bracket",
+        "legend":"Yearly Income"
+    }
+]
 
 groups = []
 for (index, value) in enumerate(table["Label (Grouping)"]):
     groups.append(value.replace('to','-')[8:])
-print(groups)
+
 # barX = [0, 1, 2, 3, 4, 5, 6, 7]
 # print(table)
 # print(table[sCounty])
@@ -58,11 +65,11 @@ def pieChart(data, title, lTitle):
 
 
 def percToFloat(perc):
-    test = []
+    result = []
 
     for i in perc:
-        test.append(float(i.strip('%')))
-    return test
+        result.append(float(i.strip('%')))
+    return result
 
 def percToPop(perc, totals):
     test = []
@@ -83,14 +90,22 @@ def labelNums(numList):
         temp = int('{:.0f}'.format(value))
         newList.append('~'+ '{:,}'.format(temp))
     return newList
+
+for value in categories:
+    print(value)
+    print(table[value['name']])
+    charting = table[value['name']]
+    print("Charting" + charting)
+    #IDK WHY THIS DOESN"T WORKKKKKK AAA
+    # temp = percToPop(charting, table[total])
+    # pieChart(charting, value['title'], value['legend'])
+
+
+
+
 # test = pd.DataFrame(data=percToFloat(table[sCounty]))
 
 test = percToPop(table[sCounty], table[total])
-
-# Note in case I forgor bc adhd: reviewing the certifications idk if we even want bar charts. 
-# A scatter could also work 
-# or we could find a way to get everything onto one histogram with $ brackets color coded
-
 
 pieChart(test, "Pie Chart", "Legend")
 
