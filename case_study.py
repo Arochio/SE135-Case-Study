@@ -24,22 +24,22 @@ categories = [
     {
         "name":"United States!!Moved; within same county!!Estimate",
         "title":"Moving Within County in United States by Wealth Bracket",
-        "legend":"Yearly Income"
+        "legend":"Yearly Income - People"
     },
     {
         "name":"United States!!Moved; from different county, same state!!Estimate",
         "title":"Moving Within State (different county) in United States by Wealth Bracket",
-        "legend":"Yearly Income"
+        "legend":"Yearly Income - People"
     },
     {
         "name":"United States!!Moved; from different  state!!Estimate",
         "title":"Moving out of State in United States by Wealth Bracket",
-        "legend":"Yearly Income"
+        "legend":"Yearly Income - People"
     },
     {
         "name":"United States!!Moved; from abroad!!Estimate",
         "title":"Moving from Abroad to United States by Wealth Bracket",
-        "legend":"Yearly Income"
+        "legend":"Yearly Income - People"
     }
 ]
 
@@ -49,19 +49,47 @@ for (index, value) in enumerate(table["Label (Grouping)"]):
 
 def pieChart(data, title, lTitle, pieLabels):
     # plt.figure(figsize=[8,6], layout='constrained')
-    legendLabels = []
+    legendLabels = [] 
     labelNumbers = labelNums(data)
-    for index, value in enumerate(groups):
-        legendLabels.append(f"{value}  |  {labelNumbers[index]}")
-    if title == "Combined Moving of United States by Wealth Bracket":
+    if lTitle == "Poverty Status - People":
+        groupsPoverty = []
+        for (index, value) in enumerate(povertyData["Label (Grouping)"]):
+            groupsPoverty.append(value)
+        for index, value in enumerate(groupsPoverty):
+            legendLabels.append(f"{value}  |  {labelNumbers[index]}")
         plt.pie(data)
+        plt.legend(labels=legendLabels,loc="upper center", title=lTitle, framealpha=.5)
+        fig = plt.gcf()
+        fig.set_size_inches(8,4)
+    elif lTitle == "Home Ownership - People":
+        groupsHomeOwners = []
+        for (index, value) in enumerate(homeOwnerData["Label (Grouping)"]):
+            groupsHomeOwners.append(value)
+        for index, value in enumerate(groupsHomeOwners):
+            legendLabels.append(f"{value}  |  {labelNumbers[index]}")
+        plt.pie(data)
+        plt.legend(labels=legendLabels,loc="upper center", title=lTitle, framealpha=.5)
+        fig = plt.gcf()
+        fig.set_size_inches(8,4)
+    elif title == "Combined Moving of United States by Wealth Bracket":
+        for index, value in enumerate(groups):
+            legendLabels.append(f"{value}  |  {labelNumbers[index]}")
+        plt.pie(data)
+        plt.legend(labels=legendLabels,loc="center right", title=lTitle, framealpha=.5, bbox_to_anchor=(2,0.5))
+        fig = plt.gcf()
+        fig.set_size_inches(7,4)
     else:
+        for index, value in enumerate(groups):
+            legendLabels.append(f"{value}  |  {labelNumbers[index]}")
         plt.pie(data, labels=list(pieLabels), labeldistance=.7)
-        print("yes")
-    plt.legend(labels=legendLabels,loc="center right", title=lTitle, framealpha=.5, bbox_to_anchor=(2,0.5))
+        plt.legend(labels=legendLabels,loc="center right", title=lTitle, framealpha=.5, bbox_to_anchor=(2,0.5))
+        fig = plt.gcf()
+        fig.set_size_inches(7,4)
+        
+    # plt.legend(labels=legendLabels,loc="center right", title=lTitle, framealpha=.5, bbox_to_anchor=(2,0.5))
     plt.title(title, loc="left")
-    fig = plt.gcf()
-    fig.set_size_inches(7,4)
+    # fig = plt.gcf()
+    # fig.set_size_inches(7,4)
     fileName = title + ".png"
     plt.savefig(fileName, bbox_inches="tight", dpi=200)
     # plt.show()
@@ -106,43 +134,9 @@ pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "
 combined = []
 for i in povertyData[total]:
     combined.append(float(i.replace(',','')))
-pieChart(list(combined), "Combined Moving of United States by Poverty Status", "Poverty Status", [])
+pieChart(list(combined), "Combined Moving of United States by Poverty Status", "Poverty Status - People", [])
 
 combined = []
 for i in homeOwnerData[total]:
     combined.append(float(i.replace(',','')))
-pieChart(list(combined), "Combined Moving of United States by Home Ownership", "Home Ownership", [])
-
-
-# temp = percToPop(table[categories[0]['name']], table[total])
-# pieChart(temp, categories[0]['title'], categories[0]['legend'])
-
-# test = pd.DataFrame(data=percToFloat(table[sCounty]))
-
-# test = percToPop(table[sCounty], table[total])
-
-# pieChart(test, "Pie Chart", "Legend")
-
-# plt.pie(test, labels=test)
-# plt.legend(labels=table[group],loc="upper right", title="test")
-# plt.title("Title")
-# plt.show()
-# plt.savefig("figure.png")
-# plt.clf()
-
-# test = percToFloat(table[sCounty])
-
-# plt.pie(test, labels= test)
-# plt.legend(labels=table[group],loc="upper right")
-# plt.show()
-# plt.savefig("figure2.png")
-
-# test.plot(kind="hist", color="red")
-# plt.ylabel("Percent of people (%)")
-# plt.xlabel("Wealth Brackets")
-# plt.xticks(barX,table[group])
-# plt.tick_params(axis="x", labelrotation=0)
-# plt.text()
-
-# table2.plot(kind="hist", alpha=0.4)
-# plt.show()
+pieChart(list(combined), "Combined Moving of United States by Home Ownership", "Home Ownership - People", [])
