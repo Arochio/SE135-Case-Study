@@ -8,6 +8,8 @@ import matplotlib.gridspec as gridspec
 
 csvFile = pd.read_csv("data.csv")
 table = csvFile[46:54]
+povertyData = csvFile[56:60]
+homeOwnerData = csvFile[61:64]
 
 total = "United States!!Total!!Estimate"
 
@@ -99,7 +101,17 @@ for value in categories:
 combined = []
 for i in table[total]:
     combined.append(float(i.replace(',','')))
-pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "Yearly Income", [])
+pieChart(list(combined), "Combined Moving of United States by Wealth Bracket", "Yearly Income - People", [])
+
+combined = []
+for i in povertyData[total]:
+    combined.append(float(i.replace(',','')))
+pieChart(list(combined), "Combined Moving of United States by Poverty Status", "Poverty Status", [])
+
+combined = []
+for i in homeOwnerData[total]:
+    combined.append(float(i.replace(',','')))
+pieChart(list(combined), "Combined Moving of United States by Home Ownership", "Home Ownership", [])
 
 
 # temp = percToPop(table[categories[0]['name']], table[total])
